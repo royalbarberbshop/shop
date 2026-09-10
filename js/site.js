@@ -111,6 +111,7 @@ function renderChrome(activePage){
   const foot = document.getElementById('siteFooter');
   const links = [
     {href:'index.html', label:'Home', key:'home'},
+    {href:'appointments.html', label:'My Appointments', key:'appointments'},
     {href:'about.html', label:'About', key:'about'},
     {href:'services.html', label:'Services', key:'services'},
     {href:'contact.html', label:'Contact', key:'contact'},
@@ -165,7 +166,7 @@ async function renderAuthSlot(activePage){
     const name = (session.user.user_metadata && session.user.user_metadata.full_name) || session.user.email;
     const firstName = name.split(' ')[0];
     el.innerHTML = `
-      <a href="appointments.html" class="nav-cta-alt ${activePage==='appointments'?'active':''}">Hi, ${escapeHtml(firstName)}</a>
+      <span style="font-size:14px;color:var(--gray-600);">Hi, ${escapeHtml(firstName)}</span>
       <button class="nav-cta-alt" id="navLogoutBtn">Log Out</button>
     `;
     document.getElementById('navLogoutBtn').addEventListener('click', signOutUser);

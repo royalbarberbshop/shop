@@ -8,7 +8,7 @@
   let rTime = null;
 
   async function loadServiceMap(){
-    const { data } = await sb.from('services').select('id,name,price');
+    const { data } = await sb.from('services').select('id,name,price,duration');
     (data||[]).forEach(s=>{ serviceMap[s.id] = s; });
   }
 
@@ -24,10 +24,9 @@
   }
 
   async function generateSlots(dateIso, durationMins, excludeId){
-    const { data, error } = await sb.from('queue_entries')
-      .select('id,time').eq('date', dateIso).eq('type','appointment').in('status', ['waiting','in-progress']);
+    const { data, error } = await sb.rpc('get_booked_times', { p_date: dateIso, p_exclude_id: excludeId });
     if(error){ showToast('Could not check availability'); return []; }
-    const booked = data.filter(r=>r.time && r.id!==excludeId).map(r=>{ const start = timeStrToMinutes(r.time); return [start, start+30]; });
+    const booked = (data||[]).map(r=>{ const start = timeStrToMinutes(r.slot_time); return [start, start+30]; });
     const slots = [];
     const step = 30;
     const startMin = SHOP_HOURS.start*60, endMin = SHOP_HOURS.end*60;
