@@ -99,13 +99,13 @@
           </div>
         </div>
         <div class="aq-meta-row">
-          <div class="aq-meta"><div class="lbl">✂️ Service</div><div class="val">${escapeHtml(svc.name)}</div></div>
-          <div class="aq-meta"><div class="lbl">📅 Date &amp; Time</div><div class="val">${fmtDateFull(a.date, a.time)}</div></div>
-          <div class="aq-meta"><div class="lbl">👤 Barber</div><div class="val">${escapeHtml(BARBER_NAME)}</div></div>
+          <div class="aq-meta"><div class="lbl">Service</div><div class="val">${escapeHtml(svc.name)}</div></div>
+          <div class="aq-meta"><div class="lbl">Time &amp; Date</div><div class="val">${fmtDateFull(a.date, a.time)}</div></div>
+          <div class="aq-meta"><div class="lbl">Barber</div><div class="val">${escapeHtml(BARBER_NAME)}</div></div>
         </div>
         <div style="height:16px;"></div>
         <div style="display:flex;gap:12px;flex-wrap:wrap;">
-          <a href="index.html" class="btn-navy" style="max-width:230px;">🖥️ View Real-Time Queue</a>
+          <a href="index.html" class="btn-navy" style="max-width:230px;">View Real-Time Queue</a>
           ${a.status==='waiting' ? `
             <button class="btn-outline" data-action="reschedule" data-id="${a.id}">Reschedule</button>
             <button class="btn-outline" data-action="cancel" data-id="${a.id}" style="border-color:var(--red-text);color:var(--red-text);">Cancel</button>

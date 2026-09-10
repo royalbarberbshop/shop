@@ -118,19 +118,23 @@ function renderChrome(activePage){
   ];
   if(nav){
     nav.innerHTML = `
-      <a href="index.html" class="nav-brand" style="cursor:pointer;">
-        <div class="nav-logo">R</div>
-        <div class="nav-brand-text">
-          <div class="name">ROYAL BARBERSHOP</div>
-          <div class="tag">SHAVE &middot; CUT &middot; STYLE</div>
-        </div>
+      <a href="index.html" class="nav-brand" style="cursor:pointer;" aria-label="Royal Barbershop Home">
+        <img src="icons/royal-wordmark-footer.png" class="nav-wordmark" alt="Royal Barbershop">
       </a>
       <div class="nav-links">
         ${links.map(l=>`<a href="${l.href}" class="${activePage===l.key?'active':''}">${l.label}</a>`).join('')}
       </div>
       <div class="nav-actions">
         <span id="authArea"></span>
-        <a href="booking.html" class="nav-cta"><img src="icons/calendar-icon.PNG" class="ui-icon" alt=""> Book Appointment</a>
+        <a href="booking.html" class="nav-cta"><img src="icons/calendar-icon.PNG" class="ui-icon" alt=""> <span>Book Appointment</span></a>
+        <button class="nav-menu-btn" id="navMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false" aria-controls="navMobileMenu">☰</button>
+      </div>
+      <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+        <div class="nav-mobile-links">
+          ${links.map(l=>`<a href="${l.href}" class="${activePage===l.key?'active':''}">${l.label}</a>`).join('')}
+        </div>
+        <div class="nav-mobile-auth" id="navMobileAuth"></div>
+        <a href="booking.html" class="nav-mobile-book"><img src="icons/calendar-icon.PNG" class="ui-icon" alt=""> Book Appointment</a>
       </div>
     `;
   }
@@ -138,6 +142,7 @@ function renderChrome(activePage){
     foot.innerHTML = `
       <div class="footer-brand">
         <img src="icons/royal-mark.png" class="footer-wordmark" alt="Royal Barbershop">
+        <img src="icons/github-footer.svg" class="footer-github" alt="GitHub">
       </div>
       <div class="footer-cols">
         <div class="footer-col">
@@ -156,7 +161,26 @@ function renderChrome(activePage){
     `;
   }
   renderAuthSlot(activePage);
+  setupMobileNav();
 }
+
+function setupMobileNav(){
+  const btn = document.getElementById('navMenuBtn');
+  const menu = document.getElementById('navMobileMenu');
+  if(!btn || !menu) return;
+  btn.addEventListener('click', ()=>{
+    const open = menu.classList.toggle('open');
+    btn.setAttribute('aria-expanded', String(open));
+    btn.setAttribute('aria-label', open ? 'Close navigation' : 'Open navigation');
+    menu.setAttribute('aria-hidden', String(!open));
+  });
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click', ()=>{
+    menu.classList.remove('open');
+    btn.setAttribute('aria-expanded','false');
+    menu.setAttribute('aria-hidden','true');
+  }));
+}
+
 
 async function renderAuthSlot(activePage){
   const el = document.getElementById('authArea');
@@ -166,11 +190,17 @@ async function renderAuthSlot(activePage){
     const name = (session.user.user_metadata && session.user.user_metadata.full_name) || session.user.email;
     const firstName = name.split(' ')[0];
     el.innerHTML = `
-      <span style="font-size:14px;color:var(--gray-600);">Hi, ${escapeHtml(firstName)}</span>
-      <button class="nav-cta-alt" id="navLogoutBtn">Log Out</button>
+      <span class="nav-greeting">Hi, ${escapeHtml(firstName)}</span>
+      <button class="nav-cta-alt" id="navLogoutBtn" type="button">Log Out</button>
     `;
+    const mobile = document.getElementById('navMobileAuth');
+    if(mobile) mobile.innerHTML = `<span class="nav-mobile-greeting">Hi, ${escapeHtml(firstName)}</span><button class="nav-mobile-logout" id="navMobileLogoutBtn" type="button">Log Out</button>`;
     document.getElementById('navLogoutBtn').addEventListener('click', signOutUser);
+    const mobileLogout = document.getElementById('navMobileLogoutBtn');
+    if(mobileLogout) mobileLogout.addEventListener('click', signOutUser);
   }else{
     el.innerHTML = `<a href="account.html" class="nav-cta-alt">Log In</a>`;
+    const mobile = document.getElementById('navMobileAuth');
+    if(mobile) mobile.innerHTML = `<a href="account.html" class="nav-mobile-login">Log In</a>`;
   }
 }
