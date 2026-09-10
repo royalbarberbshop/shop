@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Royal Barbershop — Live Queue Monitor</title>
+<meta name="description" content="Check the live queue status at Royal Barbershop, Siniloan, Laguna.">
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#14213D">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Royal Barber">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-wrap">
+  <nav class="navbar" id="siteNavbar"></nav>
+
+  <main class="main">
+    <div class="container">
+      <h1 class="section-title">Siniloan Branch Queue Status</h1>
+      <p class="section-sub">&ldquo;Stay in the loop! Check the live queue status of our Siniloan branch. Your next haircut is just a few minutes away.&rdquo;</p>
+
+      <div class="section-eyebrow">Live Monitor</div>
+      <div id="statGrid" class="stat-grid"></div>
+
+      <div class="seq-title"><span>&#9776;</span> Live Queue Sequence</div>
+      <div id="seqRow" class="seq-row"></div>
+    </div>
+  </main>
+
+  <footer class="footer" id="siteFooter"></footer>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

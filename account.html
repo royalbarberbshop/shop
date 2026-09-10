@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Log In / Sign Up — Royal Barbershop</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#14213D">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-wrap">
+  <nav class="navbar" id="siteNavbar"></nav>
+
+  <main class="main">
+    <div class="container" style="padding-top:56px;">
+      <div class="auth-panel">
+        <div class="auth-tabs">
+          <button class="auth-tab active" id="tabLogin" data-tab="login">Log In</button>
+          <button class="auth-tab" id="tabSignup" data-tab="signup">Sign Up</button>
+        </div>
+
+        <div id="authFormArea"></div>
+
+        <div class="auth-divider">or</div>
+        <button class="btn-facebook" id="fbBtn">
+          <span style="font-size:18px;">f</span> Continue with Facebook
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" id="siteFooter"></footer>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script src="js/account.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services — Royal Barbershop</title>
+
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#14213D">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="icon" href="icons/icon-192.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/site.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+<div class="page-wrap">
+  <nav class="navbar" id="siteNavbar"></nav>
+
+  <main class="main">
+    <section class="hero">
+      <div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1503951914875-452162b0f3f1?w=1200&q=60');"></div>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>Our <span class="accent">Services</span></h1>
+        <p>Straightforward pricing, no surprises. Pick a service and book your chair in under a minute.</p>
+      </div>
+    </section>
+
+    <div class="container">
+      <div id="svcGrid" class="service-grid">
+        <div class="loading-line" style="grid-column:1/-1;">Loading services…</div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer" id="siteFooter"></footer>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/site.js"></script>
+<script src="js/services.js"></script>
+</body>
+</html>
