@@ -190,7 +190,10 @@ async function renderAuthSlot(activePage){
     const name = (session.user.user_metadata && session.user.user_metadata.full_name) || session.user.email;
     const firstName = name.split(' ')[0];
     el.innerHTML = `
-      <span class="nav-greeting">Hi, ${escapeHtml(firstName)}</span>
+      <a href="account.html" class="nav-account" aria-label="Account">
+        <img src="icons/person-icon.PNG" class="nav-account-icon" alt="">
+        <span class="nav-greeting">Hi, ${escapeHtml(firstName)}</span>
+      </a>
       <button class="nav-cta-alt" id="navLogoutBtn" type="button">Log Out</button>
     `;
     const mobile = document.getElementById('navMobileAuth');
@@ -199,7 +202,7 @@ async function renderAuthSlot(activePage){
     const mobileLogout = document.getElementById('navMobileLogoutBtn');
     if(mobileLogout) mobileLogout.addEventListener('click', signOutUser);
   }else{
-    el.innerHTML = `<a href="account.html" class="nav-cta-alt">Log In</a>`;
+    el.innerHTML = `<a href="account.html" class="nav-account-icon-link" aria-label="Log In"><img src="icons/person-icon.PNG" class="nav-account-icon" alt=""></a>`;
     const mobile = document.getElementById('navMobileAuth');
     if(mobile) mobile.innerHTML = `<a href="account.html" class="nav-mobile-login">Log In</a>`;
   }
